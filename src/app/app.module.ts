@@ -69,8 +69,6 @@ const appRoutes: Routes = [
     HttpClientModule,
     MatProgressSpinnerModule,
     ReactiveFormsModule,
-    AngularFireModule,
-    AngularFireModule.initializeApp(environment.firebase),
     RouterModule.forRoot(
       appRoutes,
       { enableTracing: true } // <-- debugging purposes only
