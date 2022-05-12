@@ -1,0 +1,42 @@
+.sidenav-container {
+  height: 100%;
+}
+
+.sidenav {
+  width: 150px;
+  background-color: rgb(255, 255, 255);
+  border-right-style: solid;
+  border-color: rgb(205, 199, 222);
+  border-width: thin;
+}
+
+.sidenav .mat-toolbar {
+  background-color: rgb(88, 32, 230);
+}
+
+.mat-toolbar.mat-primary {
+  background-color: rgb(88, 32, 230);
+  position: sticky;
+  top: 0;
+  z-index: 1;
+}
+
+.spacer {
+  flex: 1 1 auto;
+}
+
+.whitelink {
+  color:white;
+  text-decoration: none;
+  cursor:pointer;
+  margin-right:10px;
+}
+a:hover {
+  border-style: solid;
+  border-color: rgb(88, 32, 230);
+  border-width: thin;
+}
+
+#TO_center{
+  text-align: center;
+}
