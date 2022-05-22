@@ -1,5 +1,6 @@
 import { Component, AfterViewInit } from '@angular/core';
 import * as L from 'leaflet';
+import { MapService } from '../map.service';
 
  
 @Component({
@@ -9,7 +10,14 @@ import * as L from 'leaflet';
 })
 export class MapComponent implements AfterViewInit {
   
+  mapPoints:any;
   
+  constructor(public mapservice:MapService) { }
+
+  ngOnInit() {  
+  
+  }
+
 
   private initMap(): void {
     var Map_A = L.tileLayer('http://mt0.google.com/vt/lyrs=s&hl=en&x={x}&y={y}&z={z}', {id: '1', tileSize: 512, zoomOffset: -1}),
@@ -22,7 +30,7 @@ export class MapComponent implements AfterViewInit {
         Map_H   = L.tileLayer('http://mt0.google.com/vt/lyrs=m&hl=en&x={x}&y={y}&z={z}', {id: '2', tileSize: 512, zoomOffset: -1});
     var map = L.map('map', {
       center: [ 32.07911174, 34.77732566],    
-      zoom: 7,
+      zoom: 8,
       layers: [Map_A]
   });
      
@@ -39,10 +47,28 @@ export class MapComponent implements AfterViewInit {
     
     var layerControl = L.control.layers(baseMaps).addTo(map);
     
-    
-}
+   
+    // var marker = L.marker([32.07911174, 34.77732566]).addTo(map);
+  
+    var polygon = L.polygon(
+      [
+        [31.6986843,35.3059387],
+        [31.6682861,35.382843],
+        [31.574691,35.3361511]
+      ],{color: 'red',fillColor: '#f03',fillOpacity: 0.5}).addTo(map);
 
-  constructor() { }
+  // add all points from db
+    this.mapPoints = this.mapservice.getPoints().subscribe(
+      (res) => (
+          res.forEach(element => {
+            L.marker([element['point'].longitude, element['point'].latitude]).addTo(map);
+          }
+        )
+      )
+  )
+
+
+}
 
   ngAfterViewInit(): void {
     this.initMap();

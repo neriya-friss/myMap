@@ -3,11 +3,10 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: true,
+  production: false,
   firebase: {
     apiKey: "AIzaSyAdZUN_LR_BYX3BRXnBmth9ees4Lii-hTM",
     authDomain: "mapjs-f5744.firebaseapp.com",
-    databaseURL: "https://mapjs-f5744.firebaseio.com",
     projectId: "mapjs-f5744",
     storageBucket: "mapjs-f5744.appspot.com",
     messagingSenderId: "101211245726",
