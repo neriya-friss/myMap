@@ -29,13 +29,13 @@ import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import { ReactiveFormsModule } from '@angular/forms';
 import { AngularFireModule } from '@angular/fire';
 import { environment } from '../environments/environment';
-
-
-
+import { AngularFirestoreModule } from '@angular/fire/firestore';
 
 const appRoutes: Routes = [
   { path: 'map', component: MapComponent },
+  { path: 'map/:lat/:lng', component: MapComponent },
   { path: 'form', component: FormComponent },
+  { path: 'form/:lat/:lng', component: FormComponent },
   { path: '',
     redirectTo: 'map',
     pathMatch: 'full'
@@ -69,6 +69,9 @@ const appRoutes: Routes = [
     HttpClientModule,
     MatProgressSpinnerModule,
     ReactiveFormsModule,
+    AngularFireModule,
+    AngularFirestoreModule,
+    AngularFireModule.initializeApp(environment.firebase),
     RouterModule.forRoot(
       appRoutes,
       { enableTracing: true } // <-- debugging purposes only

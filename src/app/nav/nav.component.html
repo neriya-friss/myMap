@@ -1,12 +1,19 @@
+
 <mat-sidenav-container class="sidenav-container">
-  <mat-sidenav #drawer class="sidenav" fixedInViewport
-      [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
-      [mode]="(isHandset$ | async) ? 'over' : 'side'"
-      [opened]="(isHandset$ | async) === false">
+  <mat-sidenav #drawer class="sidenav" id ="sidenav" fixedInViewport
+  [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
+  [mode]="(isHandset$ | async) ? 'over' : 'side'"
+  [opened]="(isHandset$ | async) === false">
     <mat-toolbar>Menu</mat-toolbar>
-    <mat-nav-list>
-      <a mat-list-item href="map"> Show map </a>
-      <a mat-list-item href="form">Form</a>
+    <mat-nav-list> 
+      
+      <a mat-list-item href="map" > Map </a>
+      <a mat-list-item href="form" > Form </a>
+  
+      
+    <!-- <a mat-list-item href="articles" *ngIf = "(authservice.user | async)?.uid"> Articles</a>
+      <a mat-list-item href="classify" *ngIf = "(authservice.user | async)?.uid"> Classify </a> -->
+     
     </mat-nav-list>
   </mat-sidenav>
   <mat-sidenav-content>
@@ -15,11 +22,13 @@
         type="button"
         aria-label="Toggle sidenav"
         mat-icon-button
-        (click)="drawer.toggle()"
-        *ngIf="isHandset$ | async">
-        <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+        (click)="drawer.toggle()">
+        <mat-icon aria-label="Side nav toggle icon"> menu</mat-icon>
       </button>
-      <span id="TO_center">Neriya map</span>
+
+      <span class = "spacer"></span>
+      <span class = "spacer"></span>   
+
     </mat-toolbar>
     <!-- Add Content Here -->
     <router-outlet></router-outlet>

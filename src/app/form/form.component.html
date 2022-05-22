@@ -1,1 +1,56 @@
-<h1 style="text-align:center;">  פה יהיה טופס הזנה 1 </h1>
+<h3>New point:</h3>
+   <div class="container">
+        <form  #addproject="ngForm" (ngSubmit)="onSubmit()">
+            <div class="row">
+                <div class="col-25">
+                  <label for="fname">Point Name</label>
+                </div>
+                <div class="col-75">
+                    <mat-form-field>
+                        <input matInput  type="text"  
+                        placeholder="name"
+                        name = "name"
+                        [(ngModel)] = "name"
+                        required>
+                    </mat-form-field>
+                </div>
+              </div>
+          
+              <div class="row">
+                <div class="col-25">
+                  <label for="fname">Lat</label>
+                </div>
+                <div class="col-75">
+                    <mat-form-field>
+                        <input matInput  type="number" matInput 
+                        placeholder="lat"
+                        name = "lat" 
+                        id = "lat"
+                        [(ngModel)] = "lat"
+                        required>
+                        </mat-form-field>
+                </div>
+              </div>
+          
+              <div class="row">
+                <div class="col-25">
+                  <label for="fname">Lng</label>
+                </div>
+                <div class="col-75">
+                    <mat-form-field>
+                        <input matInput  type="number" matInput 
+                        placeholder="lng"
+                        name = "lng" 
+                        [(ngModel)] = "lng"
+                        required>
+                    </mat-form-field>
+                </div>
+              </div>
+   
+           <div>
+             <button mat-raised-button color= "primary" > Add </button> 
+        </div>
+       </form>
+
+</div>
+     

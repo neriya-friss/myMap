@@ -1,24 +1,6 @@
-
-<!--
-<form #SelectForm="ngForm" (ngSubmit)="onSubmit()">
-  <div class="example-container">
-      <mat-form-field>
-          <mat-label>Select map</mat-label>
-            <mat-select [(value)]="selected_map" name="selected_map"   [(ngModel)] = "selected_map"> 
-              <div>
-                <mat-option value="'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png'"> map A </mat-option>
-                <mat-option value="https://{s}.tile.openstreetmap.de/{z}/{x}/{y}.png"> map B </mat-option>
-                <mat-option value="https://{s}tiles.wmflabs.org/hikebike/{z}/{x}/{y}.png"> map C </mat-option>
-                <mat-option value="https://a.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png"> map D </mat-option>
-              </div>
-            </mat-select>
-      </mat-form-field>
-      <div>
-        <button mat-raised-button color="primary" [disabled]="!selected_map"> SELECT </button>
-      </div>  
-  </div>
-</form>
--->
+  
+<link rel="stylesheet" href="https://unpkg.com/@geoman-io/leaflet-geoman-free@latest/dist/leaflet-geoman.css" />  
+<script src="https://unpkg.com/@geoman-io/leaflet-geoman-free@latest/dist/leaflet-geoman.min.js"></script>  
 <div class="map-container">
     <div class="map-frame">
       <div id="map"></div>
