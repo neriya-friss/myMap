@@ -44,20 +44,29 @@ export class MapComponent implements AfterViewInit {
   
 
   map.pm.addControls({  
-    position: 'topleft',  
+    position: 'topleft', 
+
   });  
 
-
+/*
   map.on('pm:drawstart', ({ workingLayer }) => {
     var points= [];
     workingLayer.on('pm:vertexadded', (e) => {
       points.push(e.latlng);
       console.log("points",points);
-      workingLayer.on('pm:create', (e) => {
-        console.log(e.layer);
-        console.log(e.shape);
       });
     });
+*/
+  map.on('pm:create', function(e) {
+    var points= [];
+    if(e.shape === 'Polygon'  || e.shape === 'Rectangle' || e.shape === 'Line'){
+      points.push((e.layer as L.Polygon).getLatLngs(),e.shape);
+      console.log(points);
+   }
+   else if(e.shape === 'Marker'){
+    console.log(e.shape);
+    console.log((e.layer as L.Marker)['_latlng'],e.shape);
+  }
   });
 
   
