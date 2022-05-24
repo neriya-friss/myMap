@@ -100,7 +100,6 @@ export class MapComponent implements AfterViewInit {
         else{
         console.log(name_of_point)
         alert("ok")
-        console.log("aaa")
         this.mapservice.addpoint(name_of_point,lat_of_point, lng_of_point)
         
        }
