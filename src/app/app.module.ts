@@ -30,6 +30,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { AngularFireModule } from '@angular/fire';
 import { environment } from '../environments/environment';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
+import * as $ from 'jquery';
 
 const appRoutes: Routes = [
   { path: 'map', component: MapComponent },

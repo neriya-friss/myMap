@@ -7,6 +7,9 @@ import { map } from 'rxjs/operators';
   providedIn: 'root'
 })
 export class MapService {
+  static addpoint(name_of_point: any, lat_of_point: any, lng_of_point: any) {
+    throw new Error('Method not implemented.');
+  }
 
   constructor(public db:AngularFirestore) { }
 
@@ -15,8 +18,9 @@ export class MapService {
     return this.db.collection('mapdata').valueChanges();
   }
  
-  addpoint(PointName:string,lat:number,lng:number)
+  addpoint(PointName: any, lat: any ,lng: any)
     {
+    console.log("in add")
     const point = {name:PointName, lat:lat, lng:lng }
     this.db.collection('mapdata').add(point);
   }

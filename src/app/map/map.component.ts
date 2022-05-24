@@ -1,9 +1,9 @@
+import { MapService } from './../map.service';
 import { Component, AfterViewInit } from '@angular/core';
 import * as L from 'leaflet';
-import { MapService } from '../map.service';
 import { Router } from '@angular/router';
 import '@geoman-io/leaflet-geoman-free';  
- 
+import * as $ from 'jquery';
    
 
  
@@ -15,8 +15,10 @@ import '@geoman-io/leaflet-geoman-free';
 
 export class MapComponent implements AfterViewInit {
   
-  mapPoints:any;
   constructor(public mapservice:MapService, private router: Router) { }
+  
+  mapPoints:any;
+
 
   ngOnInit() {  
   
@@ -66,11 +68,47 @@ export class MapComponent implements AfterViewInit {
    else if(e.shape === 'Marker'){
     console.log(e.shape);
     console.log((e.layer as L.Marker)['_latlng'],e.shape);
+   
+    var popupContent = 
+    '<form role="form" id="form" enctype="multipart/form-data" class = "form-horizontal">'+
+    '<div class="form-group">'+
+        '<label class="control-label col-sm-5"><strong>Point name: </strong></label>'+
+        '<input type="text" placeholder="Point name" id="point_name" name="point_name"   class="form-control" required s/>'+ 
+    '</div>'+
+          '<input style="display: inline;" type="text" id="lat" name="lat"  value="'+(e.layer as L.Marker)['_latlng'].lat+'" />'+
+          '<input style="display: inline;" type="text" id="lng" name="lng"  value="'+(e.layer as L.Marker)['_latlng'].lng+'" />'+
+          '<div class="form-group">'+
+            '<div style="text-align:center;" class="col-xs-4 col-xs-offset-2"><button type="button" class="btn">Cancel</button></div>'+
+            '<div style="text-align:center;" class="col-xs-4"><button type="submit" value="submit" class="btn btn-primary trigger-submit">Submit</button></div>'+
+          '</div>'+
+          '</form>';
+    var popup = L.popup();
+    popup
+    .setLatLng((e.layer as L.Marker)['_latlng'])
+    .setContent(popupContent)
+    .openOn(map)
+    
+    $("#form").submit(function(e){
+      e.preventDefault();
+      console.log("in add")
+      var name_of_point =$("#point_name").val();
+      var lat_of_point =$("#lat").val();
+      var lng_of_point =$("#lng").val();   
+      if(name_of_point ==null || lat_of_point ==null  || lng_of_point ==null){
+          alert("All fields in this form are required")
+        }
+        else{
+        console.log(name_of_point)
+        alert("ok")
+        this.mapservice.addpoint(name_of_point,lat_of_point, lng_of_point)
+        
+       }
+   })
   }
+  
   });
 
   
-
     var baseMaps = {
       "Map A": Map_A,
       "Map B":  Map_B,
@@ -127,21 +165,12 @@ var geojsonMarkerOptions = {
           .openOn(map)
           window.location.href ="/form/"+e.latlng.lat+"/"+e.latlng.lng;       
   }
-
-
  
   map.on('click', onMapClick);
 */
+
   }
   
- 
-
-  deletePoint()
-  {
-    console.log("In deletePoint() ")
-    //console.log("this is the name: ",name)
-   // this.mapservice.deletepoint(name);
-  }
 
   ngAfterViewInit(): void {
     this.initMap();
@@ -149,4 +178,6 @@ var geojsonMarkerOptions = {
   }
 
 }
+
+
 
